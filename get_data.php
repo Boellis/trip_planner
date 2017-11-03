@@ -12,7 +12,7 @@ if (isset($_GET['url'])) {
 
         // ??? putting substring here because I'm getting a 
         // random '1' at the end of my response data...
-        print_r(substr($response, 0, ($response.length-2)));
+        print_r(substr($response, 0, (count($response) -2)));
     }
 
     // for text searches API
@@ -24,7 +24,7 @@ if (isset($_GET['url'])) {
 
         // ??? putting substring here because I'm getting a 
         // random '1' at the end of my response data...
-        print_r(substr($response, 0, ($response.length-2)));//substr($response, 0, ($response.length-2)));
+        print_r(substr($response, 0, (count($response) -2)));//substr($response, 0, ($response.length-2)));
     }
 
     

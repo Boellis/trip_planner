@@ -78,6 +78,11 @@ $key = "<check discord>";
             baseUrl = baseUrl + '&radius=' + area;  
             debug('About to call ajax request with ' + baseUrl);
 
+            if(isNaN(area)) {
+                window.alert("Radius must be a number!");
+                return;
+            }
+
             $.ajax({
                 url: 'http://localhost/get_data.php?url=' + baseUrl, 
                 type: "GET",   
@@ -168,7 +173,7 @@ $key = "<check discord>";
             addedLocations.push(place);
             
             debug(addedLocations);
-            var parent = document.getElementById("iteneraryList");
+            var parent = document.getElementById("itineraryList");
             addedLocations.forEach(function(result) {
                 // if the element doesn't already exist  
                 // on the page, add it!
@@ -242,7 +247,7 @@ $key = "<check discord>";
                 width: 25%;
             }
 
-            #iterneraryList {
+            #itineraryList {
                 float: right;
                 width: 25%;
             }
@@ -283,7 +288,7 @@ $key = "<check discord>";
             <h3>Search Results</h3>
         </div>
 
-        <div id="iteneraryList">
+        <div id="itineraryList">
             <h3>Added Locations</h3>
         </div>
 
