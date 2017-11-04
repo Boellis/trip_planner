@@ -73,16 +73,18 @@ $key = "AIzaSyDudH82XEdtorLPxfFh8MyX_616Ns_QX24";
             debug('Lat ' + lat + ' Lon ' + lon);
             var baseUrl = "https://maps.googleapis.com/maps/api/place/textsearch/json?key=<?php echo $key; ?>";
 
+            if(isNaN(area)) {
+                window.alert("Radius must be a number!");
+                return;
+            } else {
+                area = area * 1609.34;
+            }
+
             baseUrl = baseUrl + '&query=' + query;
             baseUrl = baseUrl + '&location=' + lat + ',' + lon;
             baseUrl = baseUrl + '&radius=' + area;  
             debug('About to call ajax request with ' + baseUrl);
-
-            if(isNaN(area)) {
-                window.alert("Radius must be a number!");
-                return;
-            }
-
+         
             $.ajax({
                 url: 'http://localhost/get_data.php?url=' + baseUrl, 
                 type: "GET",   
@@ -282,7 +284,11 @@ $key = "AIzaSyDudH82XEdtorLPxfFh8MyX_616Ns_QX24";
         Type: <input type="text" id="type" value="Bar"></br>
         Latitude: <input type="text" id="latitude" value="35"></br>
         Longitude: <input type="text" id="longitude" value="-90"></br>
-        Radius: <input type="text" id="radius" value="1000"></br>
+        Search Distance: <select id="distanceFormat">
+            <option value="miles">Miles</option>
+            <option value="kilometers">Kilometers</option>
+        </select>
+        <input type="text" id="radius" value="1000"></br>
         <button onclick="getLocations()">Click me</button></br>
         <div id="locations">
             <h3>Search Results</h3>
